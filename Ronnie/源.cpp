@@ -4,13 +4,19 @@
 using namespace std;
 int main()
 {
-	string f_name, l_name;
-	cout << "Enter your first name: ";
-	cin >> f_name;
-	cout << "Then enter your last name: ";
-	cin >> l_name;
-	l_name += ", ";
-	l_name += f_name;
-	cout << "Here's the information in a single string: " << l_name;
+	struct pizzastore
+	{
+		char brand[15];
+		int diameter;
+		int weight;
+	}pizza[10];
+	cout << "Enter the name of a pizza: ";
+	cin.getline(pizza[0].brand, 15);
+	cout << "Enter the diameter of the pizza: ";
+	cin >> pizza[0].diameter;
+	cout << "Enter the weight of the pizza: ";
+	cin >> pizza[0].weight;
+	cout << "This is the information of the pizza you choose: "
+		<< pizza[0].brand << " " << pizza[0].diameter << " " << pizza[0].weight;
 	return 0;
 }
