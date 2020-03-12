@@ -2,23 +2,23 @@
 #include<cstring>
 #include<string>
 using namespace std; 
-struct pizzastore
+struct CandyBar
 {
 	char brand[15];
-	int diameter;
-	int weight;
+	float weight;
+	int calorie;
 };
 int main()
 {
-	pizzastore* ps = new pizzastore;
-	cout << "Enter the name of a pizza: ";
-	cin.getline(ps->brand, 15);
-	cout << "Enter the diameter of the pizza: ";
-	cin >> ps->diameter;
-	cout << "Enter the weight of the pizza: ";
-	cin >> (*ps).weight;
-	cout << "This is the information of the pizza you choose: "
-		<< ps->brand << " " << ps->diameter << " " << ps->weight;
-	delete ps;
+	CandyBar* pc = new CandyBar[3];
+	cout << "Enter a candy brand: ";
+	cin.getline(pc[0].brand, 15);
+	cout << "Enter the weight: ";
+	cin >> pc[0].weight;
+	cout << "Enter the calorie: ";
+	cin >> pc[0].calorie;
+	cout << "Now this is the information of a candy:\n"
+		<< "Brand: " << pc[0].brand << endl << "Weight: " << pc[0].weight << endl
+		<< "Calorie: " << pc[0].calorie;
 	return 0;
 }
