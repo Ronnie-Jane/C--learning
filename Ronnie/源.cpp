@@ -3,11 +3,15 @@
 using namespace std; 
 int main()
 {
-	const int ArSize = 100;
-	long double factorial[100] = { 1 };
-	for (int i = 1; i < 100; ++i)
-		factorial[i] = i * factorial[i - 1];
-	for (int i = 1; i < 100; i++)
-		cout << i << "! =" << factorial[i] << endl;
+	int Danpne = 100,count = 0;
+	float Cleo = 100;
+	cout << "Danpne and Cleo both invest 100 dollars but get reward in diffrent ways.";
+	for (; Danpne>= Cleo; count++)
+	{
+		Danpne += 10;
+		Cleo *= 1.05;
+	}
+	cout << endl << count << " years later,Cleo's money becomes the more."
+		<<endl << "Danpne get " << Danpne << " dollars and Cleo gets " << Cleo << " dollars";
 	return 0;
 }
