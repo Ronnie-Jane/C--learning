@@ -3,15 +3,19 @@
 using namespace std; 
 int main()
 {
-	int Danpne = 100,count = 0;
-	float Cleo = 100;
-	cout << "Danpne and Cleo both invest 100 dollars but get reward in diffrent ways.";
-	for (; Danpne>= Cleo; count++)
+	string month[12] =				//or char*month[12]=
 	{
-		Danpne += 10;
-		Cleo *= 1.05;
+		"January","February","March","April","May","June","July",
+		"August","September","October","November","December"
+	};
+	int sale[12], sum=0;
+	cout << "Enter the sales of 12 months: ";
+	for (int i = 0; i <= 11; i++)
+	{
+		cout << month[i] << " :___\b\b\b";
+		cin >> sale[i];
+		sum += sale[i];
 	}
-	cout << endl << count << " years later,Cleo's money becomes the more."
-		<<endl << "Danpne get " << Danpne << " dollars and Cleo gets " << Cleo << " dollars";
+	cout << "During the whole year, " << sum << " books have been sold.";
 	return 0;
 }
