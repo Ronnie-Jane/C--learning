@@ -3,23 +3,28 @@
 using namespace std; 
 int main()
 {
-	const int Month = 12, Year = 3;
-	int sale[Year][Month], sum[3] = { 0 };
-	cout << "Enter the sales data of each year£º\n";
-	for (int i = 0; i < 3; i++)
+	struct car
 	{
-		cout << "Year " << i+1 << " : " << endl;
-		for (int j = 0; j <= 11; j++)
-		{
-			cout << j+1 << " : ";
-			cin >> sale[i][j];
-			sum[i] += sale[i][j];
-		}
+		string maker;
+		int year;
+	};
+	int a;
+	cout << "How many cars fo you wish to catalog? ";
+	cin >> a;
+	car* data = new car[a];
+	for (int i = 0; i < a; i++)
+	{
+		cout << "Car #" << i+1 << " :" << endl
+			<< "Please enter the maker£º ";
+		cin.get();
+		getline(cin, data[i].maker);
+		cout << "Please enter the year made: ";
+		cin >> data[i].year;
 	}
-	cout << "The total sales of each year are:\n";
-	for (int i = 0; i <= 2; i++)
+	cout << "Here is you collection:\n";
+	for (int i = 0; i < a; i++)
 	{
-		cout << "Year " << i+1 << " : " << sum[i] << endl;
+		cout << data[i].year << '\t' << data[i].maker << endl;
 	}
 	return 0;
 }
