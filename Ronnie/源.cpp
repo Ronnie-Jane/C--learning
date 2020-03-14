@@ -4,14 +4,19 @@
 using namespace std; 
 int main()
 {
-	string word;
-	cout << "Enter words (to stop, type the word done):" << endl;
-	int count = 0;
-	while (word!="done")
+	int row;
+	cout << "Enter number of rows: ";
+	cin >> row;
+	for (int a=1; a <= row; a++)
 	{
-		cin >> word;
-		count++;
+		for (int b = 1; b <= row-a; b++)
+		{
+			cout << '.';
+		}
+		for (int c = 1; c <= a; c++)
+		{
+			cout << '*';
+		}
+		cout << endl;
 	}
-	cout<<endl << "You entered a total of " << count-1 << " words.";
-	return 0;
 }
