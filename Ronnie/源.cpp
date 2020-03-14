@@ -4,10 +4,10 @@
 using namespace std; 
 int main()
 {
-	char word[20];
+	string word;
 	cout << "Enter words (to stop, type the word done):" << endl;
 	int count = 0;
-	while (strcmp(word,"done"))
+	while (word!="done")
 	{
 		cin >> word;
 		count++;
