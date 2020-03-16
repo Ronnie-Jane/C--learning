@@ -2,21 +2,20 @@
 using namespace std;
 int main()
 {
-	int a, b, c;
-	bool d;
-	cout << "Enter three numbers and I will tell if they can compose a triangle:";
-	cin >> a >> b >> c;
-	if (a < b + c&&b<a+c&&c<a+b)
-		d = true;
-	else d = false;
-	if (d == true)
-	{
-		if (a == b && b == c)
-			cout << endl << "This is a equilateral triangle.";
-		else if (a == b || b == c || a == c)
-			cout << endl << "This is a isosceles triangle.";
-		else cout << endl << "This is an ordinary triangle.";
-	}
-	else cout << "These cannot compose a triangle.";
+	int day;
+	cout << "Enter a number of one day in a week:	";
+	cin >> day;
+	if (day < 8 && day>0)
+		switch (day)
+		{
+		case 1:cout << "Monday"; break;
+		case 2:cout << "Tuesday"; break;
+		case 3:cout << "Wednesday"; break;
+		case 4:cout << "Thursday"; break;
+		case 5:cout << "Friday"; break;
+		case 6:cout << "Saturday"; break;
+		case 7:cout << "Sunday"; break;
+		}
+	else cout << "Please enter a integer from 1 to 7.";
 	return 0;
 }
