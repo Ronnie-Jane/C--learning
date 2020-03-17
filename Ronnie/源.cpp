@@ -1,22 +1,17 @@
 #include<iostream>	
-#include<string>
-#include<cstring>
+#include<cctype>
 using namespace std; 
 int main()
 {
-	int row;
-	cout << "Enter number of rows: ";
-	cin >> row;
-	for (int a=1; a <= row; a++)
+	char ch;
+	cout << "Enter words or sentences(type @ to quit): ";
+	cin.get(ch);
+	while (ch != '@')
 	{
-		for (int b = 1; b <= row-a; b++)
-		{
-			cout << '.';
-		}
-		for (int c = 1; c <= a; c++)
-		{
-			cout << '*';
-		}
-		cout << endl;
+		if (isupper(ch))
+			ch = tolower(ch), cout << ch;
+		else ch = toupper(ch), cout << ch;
+		cin.get(ch);
 	}
+	return 0;
 }
