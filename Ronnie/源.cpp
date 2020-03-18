@@ -1,17 +1,23 @@
-#include<iostream>	
+#include<iostream>
 #include<cctype>
 using namespace std; 
 int main()
 {
-	char ch;
-	cout << "Enter words or sentences(type @ to quit): ";
-	cin.get(ch);
-	while (ch != '@')
+	double num[10], sum = 0,aver=0;
+	int count, biger=0;
+	cout << "Enter no more than 10 double values:";
+	for (count = 0; count < 10&&cin>>num[count]; count++)
 	{
-		if (isupper(ch))
-			ch = tolower(ch), cout << ch;
-		else ch = toupper(ch), cout << ch;
-		cin.get(ch);
+		cout << "value " << count+1 << " : " << num[count] << endl;
+		sum += num[count];
 	}
+	aver = sum / count;
+	for (int i = 0; i <= count; i++)
+	{
+		if(num[i]>aver)	
+		biger++;
+	}
+	cout << "You entered " << count << " double values, the average of them is " << endl
+		<< aver << ". And " << biger << " values are biger than average.";
 	return 0;
 }
