@@ -3,21 +3,22 @@
 using namespace std; 
 int main()
 {
-	double num[10], sum = 0,aver=0;
-	int count, biger=0;
-	cout << "Enter no more than 10 double values:";
-	for (count = 0; count < 10&&cin>>num[count]; count++)
+	cout << "Please enter one of the following choices: " << endl
+		<< "A)	B)	" << endl << "C)	D)" << endl;
+	char choice;
+	while (!(cin >> choice&&choice>='A'&&choice<='D'))
 	{
-		cout << "value " << count+1 << " : " << num[count] << endl;
-		sum += num[count];
+		cin.clear();
+		while (cin.get() != '\n')
+			continue;
+		cout << "Please enter a choice! Now again: ";
 	}
-	aver = sum / count;
-	for (int i = 0; i <= count; i++)
+	switch (choice)
 	{
-		if(num[i]>aver)	
-		biger++;
+	case'A':cout << "Give you an apple."; break;
+	case 'B':cout << "I am a boy."; break;
+	case 'C':cout << "I love Ciri."; break;
+	case 'D':cout << "Naughty Dog"; break;
 	}
-	cout << "You entered " << count << " double values, the average of them is " << endl
-		<< aver << ". And " << biger << " values are biger than average.";
 	return 0;
 }
