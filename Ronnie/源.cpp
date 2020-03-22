@@ -1,52 +1,47 @@
 #include<iostream>
 using namespace std;
-const int Max = 10;
-double average(int*,int count);
-int input(int*,int count);
-void output(int*, int count);
+struct box
+{
+	char maker[40];
+	float height;
+	float width;
+	float length;
+	float volume;
+};
+void show(box);
+void calculate(box*);
+void input(box*);
 int main()
 {
-	int size;
-	double aver;
-	int grade[Max];
-	cout << "Enter no more than 10 integers of your grades and I will "
-		<< "print them followed by the average." << endl;
-	size = input(grade, Max);
-	output(grade, size);
-	aver = average(grade, size)/size;
-	cout << "The average of your grade is: " << aver;
-}
-int input(int* arr, int limit)
-{
-	int i;
-	for ( i = 0; i < limit; i++)
-	{
-		cout << "grade "<<i+1<<" : ";
-		cin >> arr[i];
-		if (!cin)
-		{
-			cout << "Bad in put, process terminated.\n";
-			break;
-		}
-	}
-	return i;
+	box aa;
+	input(&aa);
+	show(aa);
+	calculate(&aa);
+	cout << "The volume of your box is: " << aa.volume;
 }
 
-void output(int* arr, int n)
+void input(box*a)
 {
-	for (int i = 0; i < n; i++)
-	{
-		cout << "grade " << i + 1 << " : " << arr[i] << endl;
-	}
-	return;
+	cout << "What's the maker?";
+	cin >> a->maker;
+	cout << "Enter each value(meter):" << endl
+		<< "height: ";
+	cin >> a->height;
+	cout << "width: ";
+	cin >> a->width;
+	cout << "length: ";
+	cin >> a->length;
 }
 
-double average(int arr[], int n)
+void show(const box a)
 {
-	int sum = 0;
-	for (int i = 0; i < n; i++)
-	{
-		sum += arr[i];
-	}
-	return sum;
+	cout << "Your box:" << endl
+		<< "height: " << a.height << " meters" << endl
+		<< "width: " << a.width << " meters" << endl
+		<< "length: " << a.length << " meters" << endl;
+}
+
+void calculate(box* ps)
+{
+	ps->volume = ps->height * ps->width * ps->length;
 }
