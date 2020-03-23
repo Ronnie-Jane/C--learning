@@ -1,67 +1,79 @@
 #include<iostream>
 using namespace std;
-double* fill_array(double*, int);
-void show_array(const double* begin, const double* end);
-void revalue_array(double*, double*,double);
-const int Max = 5;
+const int Slen = 30;
+struct student {
+	char fullname[Slen];
+	char hobby[Slen];
+	int ooplevel;
+};
+int getinfo(student pa[], int n);
+void display1(student st);
+void display2(const student* ps);
+void display3(const student pa[], int n);
 
 int main()
 {
-	double properties[Max];
-	double* end = fill_array(properties, Max);
-	show_array(properties, end);
-	if (properties < end)
+	int group_size;
+	cout << "Enter class size: ";
+	cin >> group_size;
+	while (cin.get() != '\n')
+		continue;
+
+	student* ptr_stu = new student[group_size];
+	int entered = getinfo(ptr_stu, group_size);
+	for (int i = 0; i < entered; i++)
 	{
-		cout << "Enter revaluation factor: ";
-		double factor;
-		while (!(cin >> factor))
-		{
-			cin.clear();
-			while (cin.get()!= '\n')
-				continue;
-			cout << "Bad input ; Please enter a number: ";
-		}
-		revalue_array(properties, end, factor);
-		show_array(properties, end);
+		display1(ptr_stu[i]);
+		display2(&ptr_stu[i]);
 	}
+	display3(ptr_stu, entered);
+	delete[]ptr_stu;
 	cout << "Done\n";
 	return 0;
 }
 
-double* fill_array(double* arr, int m)
+int getinfo(student*stu, int max)
 {
-	double temp;
+	cout << "Now enter each students' information:(enter blank into name to quit)" << endl;
 	int i;
-	for (i = 0; i < Max; i++)
+	for (i = 0; i < max; i++)
 	{
-		cout<<"Enter value #"<<i+1<<": ";
-		cin >> temp;
-		if (!cin)
-		{
-			cin.clear();
-			while (cin.get() != '\n')
-				continue;
-			cout << "Bad input;input terminated.\n";
-			break;
-		}
-		else if (temp < 0)
-			break;
-		arr[i] = temp;
+		cout << "student #" << i + 1 << ":"
+			<< "fullname: ";
+		cin.getline(stu[i].fullname,Slen);
+		cout << "hobby: ";
+		cin.getline(stu[i].hobby, Slen);
+		cout << "ooplevel: ";
+		cin >> stu[i].ooplevel;
+		cin.get();
 	}
-	return arr+i;
+	return i+1;
 }
 
-void show_array(const double* begin, const double* end)
+void display1(student st)
 {
-	for (int i = 0; begin + i <= end; i++)
-	{
-		cout << "Properties #" << i + 1 << ": $"
-			<< begin[i] << endl;
-	}
+	cout << "fullname: " << st.fullname << '\t'
+		<< "hobby: " << st.hobby << '\t'
+		<< "ooplevel: " << st.ooplevel << endl;
+	return;
 }
 
-void revalue_array(double* arr, double* end,double n)
+void display2(const student* ps)
 {
-	for (int i = 0; arr + i <= end; i++)
-		arr[i] *= n;
+	cout << "fullname: " << ps->fullname << '\t'
+		<< "hobby: " << ps->hobby << '\t'
+		<< "ooplevel: " << ps->ooplevel << endl;
+	return;
+}
+
+void display3(const student pa[], int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "student #" << i + 1 << ":\n"
+			<< "fullname: " << pa[i].fullname
+			<< "\thobby:	" << pa[i].hobby
+			<< "\tooplevel: " << pa[i].ooplevel << endl;
+	}
+	return;
 }
