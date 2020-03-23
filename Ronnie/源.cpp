@@ -1,79 +1,57 @@
 #include<iostream>
 using namespace std;
-const int Slen = 30;
-struct student {
-	char fullname[Slen];
-	char hobby[Slen];
-	int ooplevel;
-};
-int getinfo(student pa[], int n);
-void display1(student st);
-void display2(const student* ps);
-void display3(const student pa[], int n);
+double add(double, double);
+double minuss(double, double);
+double pluss(double, double);
+double devide(double, double);
+double cal(double, double, double(*operation)(double, double));
 
 int main()
 {
-	int group_size;
-	cout << "Enter class size: ";
-	cin >> group_size;
-	while (cin.get() != '\n')
-		continue;
-
-	student* ptr_stu = new student[group_size];
-	int entered = getinfo(ptr_stu, group_size);
-	for (int i = 0; i < entered; i++)
+	const char operation[4] = { '+','-','x','/' };
+	double(* pf[4])(double, double) = { add,minuss,pluss,devide };
+	double a, b, c;
+	int choice;
+	cout << "Enter two double numbers and choose one operation:(enter char into a to quit)" << endl;
+	while (1)
 	{
-		display1(ptr_stu[i]);
-		display2(&ptr_stu[i]);
+		cout << "a: ";
+		cin >> a;
+		if (!cin)
+			break;
+		cout << "b: ";
+		cin >> b;
+		cout << "Then choose a operation:" << endl
+			<< "#1: add\t#2: minus\t#3: plus\t#4: devide" << endl;
+		cin >> choice;
+		c = cal(a, b, pf[choice-1]);
+		cout << "a " << operation[choice - 1] << " b = " << c<<endl<<endl;
 	}
-	display3(ptr_stu, entered);
-	delete[]ptr_stu;
-	cout << "Done\n";
+	cout << "Bye!\t";
 	return 0;
 }
 
-int getinfo(student*stu, int max)
+double add(double a, double b)
 {
-	cout << "Now enter each students' information:(enter blank into name to quit)" << endl;
-	int i;
-	for (i = 0; i < max; i++)
-	{
-		cout << "student #" << i + 1 << ":"
-			<< "fullname: ";
-		cin.getline(stu[i].fullname,Slen);
-		cout << "hobby: ";
-		cin.getline(stu[i].hobby, Slen);
-		cout << "ooplevel: ";
-		cin >> stu[i].ooplevel;
-		cin.get();
-	}
-	return i+1;
+	return a + b;
 }
 
-void display1(student st)
+double minuss(double a, double b)
 {
-	cout << "fullname: " << st.fullname << '\t'
-		<< "hobby: " << st.hobby << '\t'
-		<< "ooplevel: " << st.ooplevel << endl;
-	return;
+	return a - b;
 }
 
-void display2(const student* ps)
+double pluss(double a, double b)
 {
-	cout << "fullname: " << ps->fullname << '\t'
-		<< "hobby: " << ps->hobby << '\t'
-		<< "ooplevel: " << ps->ooplevel << endl;
-	return;
+	return a * b;
 }
 
-void display3(const student pa[], int n)
+double devide(double a, double b)
 {
-	for (int i = 0; i < n; i++)
-	{
-		cout << "student #" << i + 1 << ":\n"
-			<< "fullname: " << pa[i].fullname
-			<< "\thobby:	" << pa[i].hobby
-			<< "\tooplevel: " << pa[i].ooplevel << endl;
-	}
-	return;
+	return a / b;
+}
+
+double cal(double a, double b, double(*operation)(double, double))
+{
+	return (*operation)(a, b);
 }
