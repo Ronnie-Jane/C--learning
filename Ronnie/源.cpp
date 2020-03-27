@@ -1,57 +1,51 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
+#include<cstring>
 using namespace std;
-double add(double, double);
-double minuss(double, double);
-double pluss(double, double);
-double devide(double, double);
-double cal(double, double, double(*operation)(double, double));
+struct stringy {
+	char* str;
+	int ct;
+};
+
+void set(stringy&,const char*);
+void show(const stringy&, int n = 1);
+void show(const char*, int n = 1);
 
 int main()
 {
-	const char operation[4] = { '+','-','x','/' };
-	double(* pf[4])(double, double) = { add,minuss,pluss,devide };
-	double a, b, c;
-	int choice;
-	cout << "Enter two double numbers and choose one operation:(enter char into a to quit)" << endl;
-	while (1)
-	{
-		cout << "a: ";
-		cin >> a;
-		if (!cin)
-			break;
-		cout << "b: ";
-		cin >> b;
-		cout << "Then choose a operation:" << endl
-			<< "#1: add\t#2: minus\t#3: plus\t#4: devide" << endl;
-		cin >> choice;
-		c = cal(a, b, pf[choice-1]);
-		cout << "a " << operation[choice - 1] << " b = " << c<<endl<<endl;
-	}
-	cout << "Bye!\t";
+	stringy beany;
+	char testing[] = "Reality isn't what it used tobe.";
+	set(beany, testing);
+	show(beany);
+	cout << endl;
+	show(beany, 2);
+	testing[0] = 'D';
+	testing[1] = 'u';
+	show(testing);
+	cout << endl;
+	show(testing, 3);
+	show("Done!");
 	return 0;
 }
 
-double add(double a, double b)
+void set(stringy& aa,const char* arr)
 {
-	return a + b;
+	aa.ct = strlen(arr);
+	aa.str = new char[aa.ct + 1];
+	strcpy(aa.str, arr);
+	return;
 }
 
-double minuss(double a, double b)
+void show(const stringy& aa, int n)
 {
-	return a - b;
+	for (int i = 0; i < n; i++)
+		cout << aa.str << endl;
+	return;
 }
 
-double pluss(double a, double b)
+void show(const char* arr, int n)
 {
-	return a * b;
-}
-
-double devide(double a, double b)
-{
-	return a / b;
-}
-
-double cal(double a, double b, double(*operation)(double, double))
-{
-	return (*operation)(a, b);
+	for (int i = 0; i < n; i++)
+		cout << arr << endl;
+	return;
 }
