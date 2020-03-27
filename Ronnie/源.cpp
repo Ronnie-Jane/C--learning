@@ -1,51 +1,37 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 #include<cstring>
 using namespace std;
-struct stringy {
-	char* str;
-	int ct;
-};
-
-void set(stringy&,const char*);
-void show(const stringy&, int n = 1);
-void show(const char*, int n = 1);
+template<typename T>
+T maxn(T* aa, int n);
+template <> const char* maxn<const char*>(const char**, int);
 
 int main()
 {
-	stringy beany;
-	char testing[] = "Reality isn't what it used tobe.";
-	set(beany, testing);
-	show(beany);
-	cout << endl;
-	show(beany, 2);
-	testing[0] = 'D';
-	testing[1] = 'u';
-	show(testing);
-	cout << endl;
-	show(testing, 3);
-	show("Done!");
+	int ii[6] = { 1,2,3,4,5,1 };
+	double dd[4] = { 1.2,3.4,5.6,4 };
+	cout << "The max of these ints is " << maxn(ii, 6) << endl;
+	cout << "The max of these doubles is " << maxn(dd, 4) << endl;
+	const char* strs[5] = {
+		"Ronnie","Jane","Jack","Triss","Geralt"
+	};
+	cout << "The longest of these string is: " << maxn(strs, 5) << endl
+		<< "Bye!";
 	return 0;
 }
 
-void set(stringy& aa,const char* arr)
+template<typename T>
+T maxn(T* aa, int n)
 {
-	aa.ct = strlen(arr);
-	aa.str = new char[aa.ct + 1];
-	strcpy(aa.str, arr);
-	return;
+	T max = aa[0];
+	for (int i = 0; i < n; i++)
+		max = max > aa[i] ? max : aa[i];
+	return max;
 }
 
-void show(const stringy& aa, int n)
+template <>const char* maxn<const char*>(const char** aa, int n)
 {
+	const char* max = aa[0];
 	for (int i = 0; i < n; i++)
-		cout << aa.str << endl;
-	return;
-}
-
-void show(const char* arr, int n)
-{
-	for (int i = 0; i < n; i++)
-		cout << arr << endl;
-	return;
+		max = strlen(max) >= strlen(aa[i]) ? max : aa[i];
+	return max;
 }
